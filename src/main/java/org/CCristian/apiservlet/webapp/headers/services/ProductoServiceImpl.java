@@ -31,7 +31,7 @@ public class ProductoServiceImpl implements ProductoService{
     }
 
     @Override
-    public List<Categoria> listarCategorias() {
+    public List<Categoria> listarCategoria() {
         return List.of();
     }
 

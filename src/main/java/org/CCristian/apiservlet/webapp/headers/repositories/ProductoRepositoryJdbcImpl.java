@@ -84,11 +84,19 @@ public class ProductoRepositoryJdbcImpl implements Repository<Producto> {
         p.setNombre(rs.getString("nombre"));
         p.setPrecio(rs.getInt("precio"));
         p.setSku(rs.getString("sku"));
-        p.setFechaRegistro(rs.getDate("fecha_registro").toLocalDate());
+
+        Date fechaDate = rs.getDate("fecha_registro");
+        if (fechaDate != null) {
+            p.setFechaRegistro(fechaDate.toLocalDate());
+        } else {
+            p.setFechaRegistro(null); // Manejo del caso donde la fecha es null
+        }
+
         Categoria c = new Categoria();
         c.setId(rs.getLong("categoria_id"));
         c.setNombre(rs.getString("categoria"));
         p.setCategoria(c);
+
         return p;
     }
 }
