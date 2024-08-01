@@ -27,6 +27,7 @@
             <% if (username.isPresent()) { %>
                 <th>Precio</th>
                 <th>Agregar</th>
+                <th>Editar</th>
             <% } %>
         </tr>
         <% for (Producto p : productos) { %>
@@ -37,6 +38,7 @@
                 <% if (username.isPresent()) { %>
                     <td><%= p.getPrecio() %></td>
                     <td><a href="<%= request.getContextPath() %>/carro/agregar?id=<%= p.getId() %>">Agregar al Carro</a></td>
+                    <td><a href="<%= request.getContextPath() %>/productos/form?id=<%= p.getId() %>">Editar</a></td>
                 <% } %>
             </tr>
         <% } %>

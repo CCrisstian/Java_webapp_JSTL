@@ -14,8 +14,10 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @WebServlet("/productos/form")
 public class ProductoFormServlet extends HttpServlet {
@@ -23,7 +25,22 @@ public class ProductoFormServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Connection conn = (Connection) req.getAttribute("conn");    /*Conexión a la Base de Datos*/
         ProductoService service = new ProductosServiceJdbcImpl(conn);
-        req.setAttribute("categorias", service.listarCategoria());  /*Obtener las categorías*/
+        long id;
+        try {
+            id = Long.parseLong(req.getParameter("id")); /*Obtiene el 'id' del producto que se quiere Editar*/
+        } catch (NumberFormatException e) {
+            id = 0L;
+        }
+        Producto producto = new Producto();
+        producto.setCategoria(new Categoria()); /*Para evitar el NullPointException*/
+        if (id > 0) {    /*El producto ya existe y se debe Modificar*/
+            Optional<Producto> o = service.porId(id);  /*Se busca el producto al que le corresponde la 'id'*/
+            if (o.isPresent()) {     /*valida que exista ese producto*/
+                producto = o.get();
+            }
+        }
+        req.setAttribute("categorias", service.listarCategoria());  /*Obtener las categorías y asignarlas como atributos del request*/
+        req.setAttribute("producto", producto); /*Pasar el producto y asignarlo como atributo del request */
         getServletContext().getRequestDispatcher("/form.jsp").forward(req, resp);   /*Pasar las categorías a form.jsp*/
     }
 
@@ -68,26 +85,39 @@ public class ProductoFormServlet extends HttpServlet {
         if (categoria_id.equals(0L)) {
             errores.put("categoria", "La Categoría es requerida!");
         }
+        LocalDate fecha;
+        try {
+            fecha = LocalDate.parse(fechaStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (DateTimeParseException e) {
+            fecha = null;
+        }
+        long id;
+        try {
+            id = Long.parseLong(req.getParameter("id"));
+        } catch (NumberFormatException e) {
+            id = 0L;
+        }
 
+        /*Asignando los valores obtenidos al producto*/
+        Producto producto = new Producto();
+        producto.setId(id);
+        producto.setNombre(nombre);
+        producto.setSku(sku);
+        producto.setPrecio(precio);
+        producto.setFechaRegistro(fecha);
+        Categoria categoria = new Categoria();
+        categoria.setId(categoria_id);
+        producto.setCategoria(categoria);
+
+        /*Cargar en la Base de Datos o Devolver el producto con Errores*/
         if (errores.isEmpty()) {
-            /*Asignando los valores obtenidos*/
-            LocalDate fecha = LocalDate.parse(fechaStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            Producto producto = new Producto();
-            producto.setNombre(nombre);
-            producto.setSku(sku);
-            producto.setPrecio(precio);
-            producto.setFechaRegistro(fecha);
-
-            Categoria categoria = new Categoria();
-            categoria.setId(categoria_id);
-
-            producto.setCategoria(categoria);
-
             service.guardar(producto);  /*Cargando el producto a la Base de Datos*/
             resp.sendRedirect(req.getContextPath() + "/productos");   /*Reenviando los valores al Servlet /productos*/
-        }else {
+        } else {
             req.setAttribute("errores", errores);
-            doGet(req, resp);
+            req.setAttribute("categorias", service.listarCategoria());  /*Obtener las categorías y asignarlas como atributos del request*/
+            req.setAttribute("producto", producto); /*Pasar el producto con Errores y asignarlo como atributo del request */
+            getServletContext().getRequestDispatcher("/form.jsp").forward(req, resp);   /*Redireccionar categorías y producto con Errores a form.jsp*/
         }
     }
 }
