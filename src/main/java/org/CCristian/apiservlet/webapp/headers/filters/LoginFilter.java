@@ -10,7 +10,7 @@ import org.CCristian.apiservlet.webapp.headers.services.LoginServiceSessionImpl;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebFilter({"/carro/*"})
+@WebFilter({"/carro/*", "/productos/form/*", "/productos/eliminar/*"})
 public class LoginFilter implements Filter {    /*Filtro para validar la Sesion de Usuario*/
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
