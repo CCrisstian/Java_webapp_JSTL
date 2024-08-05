@@ -14,7 +14,7 @@ import java.sql.Connection;
 import java.util.Optional;
 
 @WebServlet("/productos/eliminar")
-public class ProductoEliminarServlet extends HttpServlet {
+public class                                                                                ProductoEliminarServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Connection conn = (Connection) req.getAttribute("conn");    /*Conexión a la Base de Datos*/
