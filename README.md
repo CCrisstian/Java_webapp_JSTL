@@ -1,41 +1,9 @@
-<h1 align="center">C.R.U.D.</h1>
-<p>CRUD es un acrónimo que representa las cuatro operaciones básicas que se pueden realizar en una base de datos o en una aplicación de manejo de datos.</p>
+<h1 align="center">JSTL</h1>
+<p>JSTL (JavaServer Pages Standard Tag Library) es una biblioteca estándar de etiquetas que se utiliza en las páginas JavaServer Pages (JSP) para simplificar el desarrollo de aplicaciones web Java. JSTL proporciona un conjunto de etiquetas de bibliotecas que permiten realizar tareas comunes sin necesidad de escribir mucho código Java en las páginas JSP, promoviendo así una separación más clara entre la lógica de negocio y la presentación.</p>
+<h3>Componentes Principales de JSTL</h3>
+<p>JSTL se compone de varias bibliotecas de etiquetas, cada una destinada a un propósito específico:</p>
 
-- <b>Create</b> 
-- <b>Read</b>  
-- <b>Update</b> 
-- <b>Delete</b> 
-<p>Estas operaciones permiten manipular y gestionar los datos almacenados en una base de datos de manera completa y eficiente.</p>
-
-- <b>Create</b> (Crear):
-  - Esta operación implica agregar nuevos registros a una base de datos.
-  - En SQL, se realiza mediante la sentencia `INSERT`.
-- <b>Read</b> (Leer):
-  - Esta operación implica recuperar datos de la base de datos.
-  - En SQL, se realiza mediante la sentencia `SELECT`.
-- <b>Update</b> (Actualizar):
-  - Esta operación implica modificar los registros existentes en una base de datos.
-  - En SQL, se realiza mediante la sentencia `UPDATE`.
-- <b>Delete</b> (Eliminar):
-  - Esta operación implica borrar registros de una base de datos.
-  - En SQL, se realiza mediante la sentencia `DELETE`.
-
-<h1 align="center">Operador ternario en Java</h1>
-<p>El operador ternario en Java es una forma concisa de escribir una declaración if-else en una sola línea.</p>
-
-```java
-variable = (condición) ? valor_si_verdadero : valor_si_falso;
-```
-
-<h3>Cómo funciona</h3>
-
-- <b>Condición</b>: La expresión antes del signo de interrogación (`?`) es la condición que se evalúa. Debe ser una expresión booleana que resulte en `true` o `false`.
-- <b>Valor si verdadero</b>: La expresión inmediatamente después del signo de interrogación (`?`) es el valor que se asigna a la variable si la condición es `true`.
-- <b>Valor si falso</b>: La expresión después de los dos puntos (`:`) es el valor que se asigna a la variable si la condición es `false`.
-
-```jsp
-<option value="<%=c.getId()%>" <%=c.getId().equals(producto.getCategoria().getId())? "selected": ""%> ><%=c.getNombre()%></option>
-```
+- <b>Core Tags</b> (`c`): Incluye etiquetas para tareas generales como iteración (bucles), condicionales, importación de URLs, y gestión de parámetros. Ejemplos de etiquetas core incluyen `<c:forEach>`, `<c:if>`, y `<c:choose>`.
 
 <h3>Descomposición</h3>
 
