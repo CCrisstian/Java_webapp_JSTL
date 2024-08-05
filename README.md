@@ -1,47 +1,16 @@
-<h1 align="center">C.R.U.D.</h1>
-<p>CRUD es un acrónimo que representa las cuatro operaciones básicas que se pueden realizar en una base de datos o en una aplicación de manejo de datos.</p>
+<h1 align="center">JSTL</h1>
+<p>JSTL (JavaServer Pages Standard Tag Library) es una biblioteca estándar de etiquetas que se utiliza en las páginas JavaServer Pages (JSP) para simplificar el desarrollo de aplicaciones web Java. JSTL proporciona un conjunto de etiquetas de bibliotecas que permiten realizar tareas comunes sin necesidad de escribir mucho código Java en las páginas JSP, promoviendo así una separación más clara entre la lógica de negocio y la presentación.</p>
+<h3>Componentes Principales de JSTL</h3>
+<p>JSTL se compone de varias bibliotecas de etiquetas, cada una destinada a un propósito específico:</p>
 
-- <b>Create</b> 
-- <b>Read</b>  
-- <b>Update</b> 
-- <b>Delete</b> 
-<p>Estas operaciones permiten manipular y gestionar los datos almacenados en una base de datos de manera completa y eficiente.</p>
+- <b>Core Tags</b> (`c`): Incluye etiquetas para tareas generales como iteración (bucles), condicionales, importación de URLs, y gestión de parámetros. Ejemplos de etiquetas core incluyen `<c:forEach>`, `<c:if>`, y `<c:choose>`.
+- <b>Formatting Tags</b> (`fmt`): Proporciona soporte para la internacionalización y localización, incluyendo formatos de números, fechas, y mensajes. Ejemplos incluyen `<fmt:formatDate>` y `<fmt:message>`.
+- <b>SQL Tags</b> (`sql`): Permite realizar operaciones básicas con bases de datos directamente desde JSP. Estas etiquetas no son recomendadas para aplicaciones en producción debido a preocupaciones de seguridad y mantenibilidad, pero pueden ser útiles para prototipos o ejemplos simples. Ejemplos incluyen `<sql:query>` y `<sql:update>`.
+- <b>XML Tags</b> (`x`): Facilita el procesamiento y la manipulación de documentos XML. Ejemplos incluyen `<x:parse>` y `<x:out>`.
+- <b>Function Tags</b> (fn): Proporciona una serie de funciones útiles para la manipulación de cadenas y colecciones. Ejemplos incluyen `fn:contains()` y `fn:toUpperCase()`.
 
-- <b>Create</b> (Crear):
-  - Esta operación implica agregar nuevos registros a una base de datos.
-  - En SQL, se realiza mediante la sentencia `INSERT`.
-- <b>Read</b> (Leer):
-  - Esta operación implica recuperar datos de la base de datos.
-  - En SQL, se realiza mediante la sentencia `SELECT`.
-- <b>Update</b> (Actualizar):
-  - Esta operación implica modificar los registros existentes en una base de datos.
-  - En SQL, se realiza mediante la sentencia `UPDATE`.
-- <b>Delete</b> (Eliminar):
-  - Esta operación implica borrar registros de una base de datos.
-  - En SQL, se realiza mediante la sentencia `DELETE`.
+<h3>Beneficios de Usar JSTL</h3>
 
-<h1 align="center">Operador ternario en Java</h1>
-<p>El operador ternario en Java es una forma concisa de escribir una declaración if-else en una sola línea.</p>
-
-```java
-variable = (condición) ? valor_si_verdadero : valor_si_falso;
-```
-
-<h3>Cómo funciona</h3>
-
-- <b>Condición</b>: La expresión antes del signo de interrogación (`?`) es la condición que se evalúa. Debe ser una expresión booleana que resulte en `true` o `false`.
-- <b>Valor si verdadero</b>: La expresión inmediatamente después del signo de interrogación (`?`) es el valor que se asigna a la variable si la condición es `true`.
-- <b>Valor si falso</b>: La expresión después de los dos puntos (`:`) es el valor que se asigna a la variable si la condición es `false`.
-
-```jsp
-<option value="<%=c.getId()%>" <%=c.getId().equals(producto.getCategoria().getId())? "selected": ""%> ><%=c.getNombre()%></option>
-```
-
-<h3>Descomposición</h3>
-
-- `<%=c.getId()%>`: Este código JSP dentro de las etiquetas `<%=%>` evalúa una expresión Java y la inserta en el HTML. Aquí, `c.getId()` obtiene el ID de la categoría `c` y lo establece como el valor de la opción (`value`) en el elemento `<option>`.
-- `<%=c.getId().equals(producto.getCategoria().getId()) ? "selected" : "" %>`: Aquí es donde se utiliza el operador ternario.
-  - Condición: `c.getId().equals(producto.getCategoria().getId())` verifica si el ID de la categoría actual `c` es igual al ID de la categoría asociada con el `producto`. Esto se hace utilizando el método `equals()` para comparar objetos en Java.
-  - Valor si verdadero: Si la condición es `true` (es decir, los IDs son iguales), la expresión devuelve `"selected"`, lo que indica que esta opción debe mostrarse como seleccionada en la lista desplegable.
-  - Valor si falso: Si la condición es `false`, la expresión devuelve una cadena vacía `""`, por lo que la opción no se marca como seleccionada.
-- `<%=c.getNombre()%>`: Esto evalúa `c.getNombre()` para obtener el nombre de la categoría `c`, que se muestra como el texto visible de la opción en la lista desplegable.
+- <b>Reducción de Código Java en JSP</b>: JSTL permite que la mayoría de las operaciones se realicen a través de etiquetas, minimizando el uso de código Java embebido en las páginas JSP.
+- <b>Facilidad de Mantenimiento</b>: Al separar más claramente la lógica de negocio de la presentación, las aplicaciones se vuelven más fáciles de mantener y escalar.
+- <b>Consistencia</b>: Proporciona una forma estándar y consistente de realizar operaciones comunes en todas las páginas JSP.
