@@ -4,12 +4,13 @@
 <p>JSTL se compone de varias bibliotecas de etiquetas, cada una destinada a un propósito específico:</p>
 
 - <b>Core Tags</b> (`c`): Incluye etiquetas para tareas generales como iteración (bucles), condicionales, importación de URLs, y gestión de parámetros. Ejemplos de etiquetas core incluyen `<c:forEach>`, `<c:if>`, y `<c:choose>`.
+- <b>Formatting Tags</b> (`fmt`): Proporciona soporte para la internacionalización y localización, incluyendo formatos de números, fechas, y mensajes. Ejemplos incluyen `<fmt:formatDate>` y `<fmt:message>`.
+- <b>SQL Tags</b> (`sql`): Permite realizar operaciones básicas con bases de datos directamente desde JSP. Estas etiquetas no son recomendadas para aplicaciones en producción debido a preocupaciones de seguridad y mantenibilidad, pero pueden ser útiles para prototipos o ejemplos simples. Ejemplos incluyen `<sql:query>` y `<sql:update>`.
+- <b>XML Tags</b> (`x`): Facilita el procesamiento y la manipulación de documentos XML. Ejemplos incluyen `<x:parse>` y `<x:out>`.
+- <b>Function Tags</b> (fn): Proporciona una serie de funciones útiles para la manipulación de cadenas y colecciones. Ejemplos incluyen `fn:contains()` y `fn:toUpperCase()`.
 
-<h3>Descomposición</h3>
+<h3>Beneficios de Usar JSTL</h3>
 
-- `<%=c.getId()%>`: Este código JSP dentro de las etiquetas `<%=%>` evalúa una expresión Java y la inserta en el HTML. Aquí, `c.getId()` obtiene el ID de la categoría `c` y lo establece como el valor de la opción (`value`) en el elemento `<option>`.
-- `<%=c.getId().equals(producto.getCategoria().getId()) ? "selected" : "" %>`: Aquí es donde se utiliza el operador ternario.
-  - Condición: `c.getId().equals(producto.getCategoria().getId())` verifica si el ID de la categoría actual `c` es igual al ID de la categoría asociada con el `producto`. Esto se hace utilizando el método `equals()` para comparar objetos en Java.
-  - Valor si verdadero: Si la condición es `true` (es decir, los IDs son iguales), la expresión devuelve `"selected"`, lo que indica que esta opción debe mostrarse como seleccionada en la lista desplegable.
-  - Valor si falso: Si la condición es `false`, la expresión devuelve una cadena vacía `""`, por lo que la opción no se marca como seleccionada.
-- `<%=c.getNombre()%>`: Esto evalúa `c.getNombre()` para obtener el nombre de la categoría `c`, que se muestra como el texto visible de la opción en la lista desplegable.
+- <b>Reducción de Código Java en JSP</b>: JSTL permite que la mayoría de las operaciones se realicen a través de etiquetas, minimizando el uso de código Java embebido en las páginas JSP.
+- <b>Facilidad de Mantenimiento</b>: Al separar más claramente la lógica de negocio de la presentación, las aplicaciones se vuelven más fáciles de mantener y escalar.
+- <b>Consistencia</b>: Proporciona una forma estándar y consistente de realizar operaciones comunes en todas las páginas JSP.
