@@ -14,3 +14,25 @@
 - <b>Reducción de Código Java en JSP</b>: JSTL permite que la mayoría de las operaciones se realicen a través de etiquetas, minimizando el uso de código Java embebido en las páginas JSP.
 - <b>Facilidad de Mantenimiento</b>: Al separar más claramente la lógica de negocio de la presentación, las aplicaciones se vuelven más fáciles de mantener y escalar.
 - <b>Consistencia</b>: Proporciona una forma estándar y consistente de realizar operaciones comunes en todas las páginas JSP.
+
+<h1 align="center">applicationScope, requestScope, y sessionScope</h1>
+
+Los términos `applicationScope`, `requestScope`, y `sessionScope` son objetos de ámbito (scopes) que se utilizan para almacenar y acceder a los datos de la aplicación en diferentes niveles de alcance. Estos ámbitos son parte del modelo de datos de JSP y se utilizan para controlar el ciclo de vida de los objetos y su accesibilidad en una aplicación web.
+
+<h2>applicationScope</h2>
+
+- <b>Descripción</b>: El `applicationScope` representa el ámbito de la aplicación. Los objetos almacenados en este ámbito están disponibles para todos los usuarios y para todas las sesiones durante toda la vida de la aplicación web.
+- <b>Uso</b>: Es útil para almacenar datos globales o configuraciones compartidas por todos los usuarios de la aplicación, como parámetros de configuración o recursos compartidos.
+- <b>Duración</b>: Desde que la aplicación se inicia hasta que se detiene o se reinicia.
+
+<h2>requestScope</h2>
+
+- <b>Descripción</b>: El `requestScope` representa el ámbito de la solicitud HTTP. Los objetos almacenados en este ámbito son accesibles durante el ciclo de vida de una sola solicitud HTTP.
+- <b>Uso</b>: Se utiliza para datos que solo necesitan ser accesibles durante el procesamiento de una solicitud específica, como resultados de formularios o datos intermedios.
+- <b>Duración</b>: Desde que se inicia la solicitud hasta que se completa.
+
+<h2>sessionScope</h2>
+
+- <b>Descripción</b>: El `sessionScope` representa el ámbito de la sesión del usuario. Los objetos almacenados en este ámbito son accesibles durante la sesión de un usuario específico.
+- <b>Uso</b>: Es útil para almacenar datos relacionados con la sesión del usuario, como información de autenticación, preferencias de usuario o datos que deben persistir entre solicitudes.
+- <b>Duración</b>: Desde que la sesión del usuario se inicia hasta que expira o se invalida.
