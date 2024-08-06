@@ -1,14 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"
-import="java.util.*, java.time.format.*, org.CCristian.apiservlet.webapp.headers.models.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="java.time.format.*"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<%
-    List<Categoria> categorias = (List<Categoria>) request.getAttribute("categorias");
-    Map<String, String> errores = (Map<String, String>) request.getAttribute("errores");
-    Producto producto = (Producto) request.getAttribute("producto");
-    String fecha = producto.getFechaRegistro() != null? producto.getFechaRegistro().format(DateTimeFormatter.ofPattern("YYYY-MM-dd")): "";
-%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,36 +16,36 @@ import="java.util.*, java.time.format.*, org.CCristian.apiservlet.webapp.headers
         <div>
             <input type="text" name="nombre" id="nombre" value="${producto.nombre}">
         </div>
-        <% if(errores != null && errores.containsKey("nombre")){%>
-            <div style="color:red;"><%=errores.get("nombre")%></div>
-        <% } %>
+        <c:if test="${errores != null && errores.containsKey('nombre')}">
+            <div style="color:red;">${errores.nombre}</div>
+        </c:if>
     </div>
     <div>
         <label for="precio">Precio</label>
         <div>
             <input type="number" name="precio" id="precio" value="${producto.precio > 0? producto.precio: ""}">
         </div>
-        <% if(errores != null && errores.containsKey("precio")){%>
-            <div style="color:red;"><%=errores.get("precio")%></div>
-        <% } %>
+        <c:if test="${errores != null && !empty errores.precio}">
+            <div style="color:red;">${errores.precio}</div>
+        </c:if>
     </div>
     <div>
         <label for="sku">SKU</label>
         <div>
             <input type="text" name="sku" id="sku" value="${producto.sku}">
         </div>
-        <% if(errores != null && errores.containsKey("sku")){%>
-            <div style="color:red;"><%=errores.get("sku")%></div>
-        <% } %>
+        <c:if test="${errores != null && !empty errores.sku}">
+            <div style="color:red;">${errores.sku}</div>
+        </c:if>
     </div>
     <div>
         <label for="fecha_registro">Fecha Registro</label>
         <div>
             <input type="date" name="fecha_registro" id="fecha_registro" value="${producto.fechaRegistro != null? producto.fechaRegistro.format(DateTimeFormatter.ofPattern("YYYY-MM-dd")): ""}">
         </div>
-        <% if(errores != null && errores.containsKey("fecha_registro")){%>
-            <div style="color:red;"><%=errores.get("fecha_registro")%></div>
-        <% } %>
+        <c:if test="${errores != null && !empty errores.fecha_registro}">
+            <div style="color:red;">${errores.fecha_registro}</div>
+        </c:if>
     </div>
     <div>
         <label for="categoria">Categoría</label>
@@ -65,9 +57,9 @@ import="java.util.*, java.time.format.*, org.CCristian.apiservlet.webapp.headers
                 </c:forEach>
             </select>
         </div>
-        <% if(errores != null && errores.containsKey("categoria")){%>
-            <div style="color:red;"><%=errores.get("categoria")%></div>
-        <% } %>
+        <c:if test="${errores != null && !empty errores.categoria}">
+            <div style="color:red;">${errores.categoria}</div>
+        </c:if>
     </div>
     <div><input type="submit" value="${producto.id != null && producto.id > 0? "Editar":"Crear"}"></div>
     <input type="hidden" name="id" value="${producto.id}" >
